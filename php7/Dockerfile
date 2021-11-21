@@ -3,7 +3,7 @@
 ######
 
 FROM php:7.4-fpm
-MAINTAINER Young <zhy_0875@gmail.com>
+MAINTAINER prontosil <xinyongp@gmail.com>
 
 RUN mkdir -p /usr/share/nginx/html
 
@@ -12,12 +12,13 @@ WORKDIR /usr/share/nginx/html
 ######
 # You can install php extensions using docker-php-ext-install
 ######
-RUN apt-get update && apt-get install -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
-        libzip-dev \
-        zip \
+RUN sed -i s/deb.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list && \
+    apt-get update && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libzip-dev \
+    zip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) mysqli \

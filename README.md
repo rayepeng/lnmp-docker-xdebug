@@ -1,9 +1,11 @@
 # lnmp-docker-compose
 
-Description:
+## mysql 环境
 
-Use vagrant and docker-compose to start up linux-nginx-php-mysql dev service.
-Include different php's version, such as php5.6 and php7.2.
+```
+docker-compose -f mysql.yml # 密码123456， /tmp/sql/test.db.sql
+```
+
 
 ---
 
@@ -48,22 +50,3 @@ Add local url dns to hosts, such as:
 Request: http://hello.in 
 
 ---
-# update @20200519
-* update php7 Dockerfile 
-* update php7 php.ini
-
-# update @20181024
-* add php7.2 docker 
-* add php7 to docker-compose
-
-# update @20181019
-* change mysql dockerfile -> mysql version 5.7.23, latest version is 8.0
-
-# update @20170904
-* add php7-fpm
-* update the timezone in docker
-
-# update @20170810
-
-* add mysql etc 
-* add php db scripts
