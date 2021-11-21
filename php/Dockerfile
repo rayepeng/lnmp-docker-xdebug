@@ -6,17 +6,19 @@
 FROM php:5.6.30-fpm
 MAINTAINER prontosil <xinyongp@gmail.com>
 
-######
-# You can install php extensions using docker-php-ext-install
-######
 
-RUN sed -i s/deb.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list \
-    &&apt-get update && apt-get install -y \
+RUN mkdir -p /usr/share/nginx/html 
+WORKDIR /usr/share/nginx/html
+COPY sources.list /etc/apt/sources.list
+
+RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
     libpng12-dev \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd 
 

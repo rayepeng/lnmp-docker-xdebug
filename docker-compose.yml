@@ -12,16 +12,16 @@ nginx:
   links:
     # - php:__DOCKER_PHP_FPM__
     - php7:__DOCKER_PHP7_FPM__
-php:
-  build: ./php
-  ports:
-    - "9000:9000"
-  volumes:
-    - ./app:/usr/share/nginx/html
-    - ./php/etc:/usr/local/etc/php:rw
-    - /etc/localtime:/etc/localtime:ro
-  links:
-    - mysql:mysql
+# php:
+#   build: ./php
+#   ports:
+#     - "9000:9000"
+#   volumes:
+#     - ./app:/usr/share/nginx/html
+#     - ./php/etc:/usr/local/etc/php:rw
+#     - /etc/localtime:/etc/localtime:ro
+#   links:
+#     - mysql:mysql
 mysql:
   build: ./mysql
   ports:
@@ -36,7 +36,7 @@ mysql:
 php7:
   build: ./php7
   ports:
-    - "9001:9000"
+    - "9000:9000"
   volumes:
     - ./app/xinhu-master:/usr/share/nginx/html
     - ./php7/etc:/usr/local/etc/php:rw
